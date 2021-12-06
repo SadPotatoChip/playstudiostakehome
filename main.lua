@@ -14,7 +14,7 @@ end
 
 function love.update(dt)
   time = time + dt
-  if time >= 0.03 then
+  if time >= 0.1 then
     time = 0
     if false == currentTetrimino:tryMove("down") then
       onTetriminoLanded(currentTetrimino)
@@ -30,6 +30,10 @@ function love.keypressed(key, scancode, isrepeat)
    if key == "d" or key == "right" then
       currentTetrimino:tryMove("right")
    end
+   if key == "s" or key == "down" or key == "space" then
+      currentTetrimino:drop()
+   end
+
 end
 
 function love.draw()

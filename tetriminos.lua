@@ -20,6 +20,14 @@ function Tetrimino:tryMove(direction)
   return true;
 end
 
+function Tetrimino:drop()
+  local canDrop = true
+  while canDrop do
+    canDrop = self:tryMove("down")
+  end
+end
+
+
 function Tetrimino:onDraw()     
     for i = 0, #self.blocks do
         self.blocks[i]:onDraw();

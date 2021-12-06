@@ -35,11 +35,12 @@ function onTetriminoLanded(tetrimino)
     initializePlayArea()
   end
   
-  --TODO destroy filled rows
+  destroyFilledRows()
   
 end
 
 function tryInsertTetriminoIntoGrid(tetrimino)
+
   -- check if the game is over
   for i = 0, #tetrimino.blocks do
     if tetrimino.blocks[i].y <= 0 then
@@ -53,6 +54,43 @@ function tryInsertTetriminoIntoGrid(tetrimino)
   end  
   
   return true
+end
+
+function destroyRow(n)
+  for  i = 0, gridColumns do
+    --probably should be deallocated in some way
+    if grid[n][i]~=nil then
+      grid[n][i] = nil
+    end
+  end
+  
+  for i = n, 0, -1 do
+    for j = 0, gridColumns do
+      if i > 0 then
+        grid[i][j] = grid[i-1][j]
+        if grid[i][j] ~= nil then
+          grid[i][j]:move("down")
+        end
+        grid[i-1][j] = nil;
+      end
+    end
+  end
+end
+
+
+function destroyFilledRows()
+   for i = 0, gridRows - 1 do
+        local isRowFilled = true;
+        for j = 0, gridColumns - 1 do
+          if grid[i][j] == nil then
+            isRowFilled = false;
+            break;
+          end
+        end
+        if isRowFilled then
+          destroyRow(i);
+        end
+    end
 end
 
 function onDrawPlayArea()
