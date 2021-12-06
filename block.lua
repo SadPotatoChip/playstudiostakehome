@@ -32,6 +32,6 @@ function Block:setPosition(x, y)
 end
 
 function Block:onDraw() 
-    love.graphics.draw(SpriteLoader.loadedSprites[self.color], self.x * 42, self.y * 42 )
+    love.graphics.draw(loadedSprites[self.color], self.x * 42, self.y * 42 )
 end
 

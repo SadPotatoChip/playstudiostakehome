@@ -6,7 +6,7 @@ local currentTetrimino
 local time = 0
 
 function love.load()
-  SpriteLoader.loadSprites()
+  loadSprites()
   currentTetrimino = TetriminoO.new();
 end
 
