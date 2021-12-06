@@ -5,11 +5,19 @@ Tetrimino.__index = Tetrimino
 
 local tetriminoSpawnXCoordinate = 4;
 
-function Tetrimino:move(direction)     
-    for i = 0, #self.blocks do
-        self.blocks[i]:move(direction);
+function Tetrimino:tryMove(direction)
+  
+  --check if the space we are tryin to move to is available and valid
+  for i = 0, #self.blocks do
+    if false == canBlockMoveInDirection(self.blocks[i], direction) then
+      return false
     end
-    return true;
+  end
+  
+  for i = 0, #self.blocks do
+      self.blocks[i]:move(direction);
+  end
+  return true;
 end
 
 function Tetrimino:onDraw()     
