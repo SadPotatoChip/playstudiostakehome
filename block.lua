@@ -14,14 +14,14 @@ function Block.new (color, parent)
 end
 
 function Block:move(direction)
-    if directon == "left" then
+    if direction == "left" then
       self:setPosition(self.x-1, self.y)
     elseif direction == "right" then
       self:setPosition(self.x+1, self.y)
     elseif direction == "down" then
       self:setPosition(self.x, self.y+1)
     else 
-      print(direction .. " is not a valid direction to move the block")
+      print("(" .. direction .. ") is not a valid direction to move the block")
     end
 end
 

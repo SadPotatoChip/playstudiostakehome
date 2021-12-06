@@ -5,16 +5,8 @@ Tetrimino.__index = Tetrimino
 
 local tetriminoSpawnXCoordinate = 4;
 
-function Tetrimino.new ()
-  local instance = setmetatable({}, Tetrimino)
-  instance.blocks = {}
-  instance.rotations = {}
-  instance.currentRotation = 0
-  return instance
-end
-
 function Tetrimino:move(direction)     
-    for i = 0, #self.blocks  do
+    for i = 0, #self.blocks do
         self.blocks[i]:move(direction);
     end
     return true;
@@ -31,7 +23,7 @@ TetriminoO = {}
 TetriminoO.__index = Tetrimino
 
 function TetriminoO.new ()
-  local instance = setmetatable({}, TetriminoO)
+  local instance = setmetatable({}, Tetrimino)
   instance.blocks = {}
   for i = 0, 3 do
     instance.blocks[i] = Block.new("red", instance)
