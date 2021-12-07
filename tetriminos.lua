@@ -283,3 +283,24 @@ function TetriminoI.new ()
   return instance
 end
 
+
+DropIndicator = {}
+
+function DropIndicator.new ()
+  
+  local instance = setmetatable({}, Tetrimino)
+  instance.blocks = {}
+  for i = 0, 3 do
+    instance.blocks[i] = Block.new("indicator", instance)
+  end  
+  
+  return instance
+end
+
+function updateIndicatorPosition(tetrimino, indicator)  
+  
+  for i = 0, 3 do
+    indicator.blocks[i]:setPosition(tetrimino.blocks[i].x, tetrimino.blocks[i].y)
+  end
+  indicator:drop()
+end

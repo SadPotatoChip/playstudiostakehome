@@ -7,5 +7,6 @@ function loadSprites()
   loadedSprites["orange"] = love.graphics.newImage("Assets/block_orange.png")
   loadedSprites["pink"] = love.graphics.newImage("Assets/block_pink.png")
   loadedSprites["red"] = love.graphics.newImage("Assets/block_red.png")
-  loadedSprites["yellow"] = love.graphics.newImage("Assets/block_yellow.png")  
+  loadedSprites["yellow"] = love.graphics.newImage("Assets/block_yellow.png")
+  loadedSprites["indicator"] = love.graphics.newImage("Assets/indicator.png")
 end
