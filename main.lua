@@ -9,6 +9,7 @@ local isGamePlaying
 local time = 0
 local timeBetweenGameTicks = 1
 local isLastGameWon = nil
+local isInputAllowed = true
 rowsDeleted = 0
 rowsRequiredToWin = 1
 
@@ -34,7 +35,7 @@ function love.update(dt)
       time = 0
       if false == currentTetrimino:tryMove("down") then
         local nOfDestroyedRows = onTetriminoLanded(currentTetrimino)
-        if -1 ~= nOfDestroyedRows then
+        if nil ~= nOfDestroyedRows then
           currentTetrimino = Tetrimino.getRandomTetrimino()
           updateIndicatorPosition(currentTetrimino, dropIndicator)
           rowsDeleted = rowsDeleted + nOfDestroyedRows
@@ -42,6 +43,7 @@ function love.update(dt)
             isLastGameWon = true
             isGamePlaying = false
           end
+          isInputAllowed = true
         else
           isLastGameWon = false
           isGamePlaying = false
@@ -54,34 +56,42 @@ end
 function love.keypressed(key, scancode, isrepeat)
   
   if isGamePlaying then
-    local isInputValid = false
-    if key == "a" or key == "left" then
-      currentTetrimino:tryMove("left")
-      isInputValid = true
-    end
-    if key == "d" or key == "right" then
-      currentTetrimino:tryMove("right")
-      isInputValid = true
-    end
-    if key == "s" or key == "down" then
-      currentTetrimino:drop()
-      isInputValid = true
-    end
-    if key == "space" or key == "w" or key == "r" then
-      currentTetrimino:tryRotate()
-      isInputValid = true
-    end  
-    if isInputValid then updateIndicatorPosition(currentTetrimino, dropIndicator) end
+    processGameplayInput(key)
   else
     if key == "1" or key == "2" or key == "3" then
       local playerInput = tonumber(key)
       timeBetweenGameTicks = 0.65 - playerInput * 0.2
-      rowsRequiredToWin = 2 * playerInput
+      rowsRequiredToWin = 5 * playerInput
       initializeNewGame()
       isInputValid = true
     end  
   end  
 end
+
+function processGameplayInput(key)
+  if false == isInputAllowed then return end
+  
+  local isInputValid = false
+  if key == "a" or key == "left" then
+    currentTetrimino:tryMove("left")
+    isInputValid = true
+  end
+  if key == "d" or key == "right" then
+    currentTetrimino:tryMove("right")
+    isInputValid = true
+  end
+  if key == "s" or key == "down" then
+    currentTetrimino:drop()
+    isInputAllowed = false
+    isInputValid = true
+  end
+  if key == "space" or key == "w" or key == "r" then
+    currentTetrimino:tryRotate()
+    isInputValid = true
+  end  
+  if isInputValid then updateIndicatorPosition(currentTetrimino, dropIndicator) end  
+end
+
 
 function love.draw()
   if isGamePlaying then
@@ -90,7 +100,7 @@ function love.draw()
     onDrawPlayArea()
     love.graphics.print("Destroyed rows to win: " .. rowsDeleted .. "/" .. rowsRequiredToWin)
   else
-    love.graphics.print("Press a keyboard key to select difficulty\n1)Easy\n2)Medium\n3)Super Hard")
+    love.graphics.print("Press 1, 2 or 3 on the keyboard to select difficulty\n1 - Easy\n2 - Medium\n3 - Super Hard")
     if isLastGameWon ~= nil then
       if isLastGameWon then
         love.graphics.print("You Win!", 180, 350)

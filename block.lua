@@ -4,11 +4,10 @@ Block = {}
 Block.__index = Block
 BlockSpriteSize = 42
 
-function Block.new (color, parent)
+function Block.new (color)
   local instance = setmetatable({}, Block)
   instance.x = 0
   instance.y = 0
-  instance.parent = parent
   instance.color = color 
   return instance
 end

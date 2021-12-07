@@ -2,13 +2,16 @@ grid = {}
 gridRows = 19
 gridColumns = 10
 
+--I feel like this should have somehow been a singleton but I think thats just due to me working in object oriented languages for too long, in any case I am not sure how best to implement this in lua, it seems very messy and it's hard to understand where these functions are coming from in other files.
+
 function initializePlayArea()
-for i = 0, gridRows - 1 do
+  for i = 0, gridRows - 1 do
     grid[i] = {}
     for j = 0, gridColumns - 1 do
-        grid[i][j] = nil
-        end
+      --empty grid location is represented by a nil
+      grid[i][j] = nil
     end
+  end
 end
 
 function canBlockMoveInDirection(block, direction)     
@@ -30,11 +33,11 @@ function canBlockMoveInDirection(block, direction)
 end
 
 
---returns number of rows destroyed when the tetrimino landed or -1 if we lost the game
+--returns number of rows destroyed when the tetrimino landed or nil if the location where we are attempting to insert the tetrimino is invalid
 function onTetriminoLanded(tetrimino)
   
   if false == tryInsertTetriminoIntoGrid(tetrimino) then
-    return -1
+    return nil
   end
     
   return destroyFilledRows()
@@ -60,12 +63,13 @@ end
 
 function destroyRow(n)
   for  i = 0, gridColumns do
-    --probably should be deallocated in some way
+    --I feel as tho I should somehow release this memory even tho the GC will do it :D
     if grid[n][i]~=nil then
       grid[n][i] = nil
     end
   end
   
+  --adjust all the blocks in the rows above the one we destroyed
   for i = n, 0, -1 do
     for j = 0, gridColumns do
       if i > 0 then
