@@ -26,7 +26,6 @@ function Block:move(direction)
 end
 
 function Block:setPosition(x, y) 
-    --print(y)
     self.x = x
     self.y = y
 end

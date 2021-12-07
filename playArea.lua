@@ -93,6 +93,13 @@ function destroyFilledRows()
     end
 end
 
+function areCoordinatesUnoccupied(x,y) 
+  if x<0 or x >= gridColumns or y<0 or y>=gridRows then
+      return false;
+  end
+  return grid[y][x] == nil;
+end
+
 function onDrawPlayArea()
   for i = 0, gridRows - 1 do    
     for j = 0, gridColumns - 1 do

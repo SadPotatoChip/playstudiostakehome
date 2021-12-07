@@ -18,7 +18,7 @@ function love.update(dt)
     time = 0
     if false == currentTetrimino:tryMove("down") then
       onTetriminoLanded(currentTetrimino)
-      currentTetrimino = TetriminoO.new()
+      currentTetrimino = TetriminoL.new()
     end    
   end  
 end
@@ -30,8 +30,11 @@ function love.keypressed(key, scancode, isrepeat)
    if key == "d" or key == "right" then
       currentTetrimino:tryMove("right")
    end
-   if key == "s" or key == "down" or key == "space" then
+   if key == "s" or key == "down" then
       currentTetrimino:drop()
+   end
+   if key == "space" or key == "w" or key == "r" then
+      currentTetrimino:tryRotate()
    end
 
 end
