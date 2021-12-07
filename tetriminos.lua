@@ -4,7 +4,7 @@ require("playArea")
 Tetrimino = {}
 Tetrimino.__index = Tetrimino
 
-local tetriminoSpawnXCoordinate = 4;
+local tetriminoSpawnXCoordinate = 4
 
 function Tetrimino:tryMove(direction)
   
@@ -16,9 +16,9 @@ function Tetrimino:tryMove(direction)
   end
   
   for i = 0, #self.blocks do
-      self.blocks[i]:move(direction);
+      self.blocks[i]:move(direction)
   end
-  return true;
+  return true
 end
 
 function Tetrimino:drop()
@@ -51,7 +51,7 @@ function Tetrimino:tryRotate()
       newBlockLocations[i] = newLocation
     else
       print("rotate location: (" .. newLocation[1] .. ", " .. newLocation[2] .. ") is invalid")
-      return false;
+      return false
     end
   end
 
@@ -85,7 +85,7 @@ end
 
 function Tetrimino:onDraw()     
     for i = 0, #self.blocks do
-        self.blocks[i]:onDraw();
+        self.blocks[i]:onDraw()
     end
 end
 
@@ -145,10 +145,10 @@ function TetriminoJ.new ()
     instance.blocks[i] = Block.new("blue", instance)
   end
   
-  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate, 0);
-  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate, 1);
-  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate -1, 2);
-  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate, 2);
+  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate, 0)
+  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate, 1)
+  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate -1, 2)
+  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate, 2)
   
   instance.rotations = {
       {{1, 0},{1,0},{-1,1},{-1,1}},
@@ -171,10 +171,10 @@ function TetriminoS.new ()
     instance.blocks[i] = Block.new("green", instance)
   end
   
-  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate + 1, 0);
-  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate + 2, 0);
-  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate , 1);
-  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate + 1, 1);
+  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate + 1, 0)
+  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate + 2, 0)
+  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate , 1)
+  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate + 1, 1)
   
   instance.rotations = {
         {{1, 0},{2,-1},{-1,0},{0,-1}},
@@ -196,9 +196,9 @@ function TetriminoS.new ()
   end
   
   instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate + 1, 0)
-  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate + 2, 0);
-  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate , 1);
-  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate + 1, 1);
+  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate + 2, 0)
+  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate , 1)
+  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate + 1, 1)
   
   instance.rotations = {
         {{1, 0},{2,-1},{-1,0},{0,-1}},
@@ -219,10 +219,10 @@ function TetriminoZ.new ()
     instance.blocks[i] = Block.new("red", instance)
   end
   
-  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate, 0);
-  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate + 1, 0);
-  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate + 1, 1);
-  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate + 2, 1);
+  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate, 0)
+  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate + 1, 0)
+  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate + 1, 1)
+  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate + 2, 1)
   
   instance.rotations = {
         {{-2, 0},{0,-1},{-1,0},{1,-1}},
@@ -243,10 +243,10 @@ function TetriminoT.new ()
     instance.blocks[i] = Block.new("pink", instance)
   end
   
-  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate , 0);
-  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate + 1, 0);
-  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate + 2, 0);
-  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate + 1, 1);
+  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate , 0)
+  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate + 1, 0)
+  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate + 2, 0)
+  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate + 1, 1)
   
   instance.rotations = {
         {{-2, 0},{0,-1},{0,-1},{-1,-1}},
@@ -269,10 +269,10 @@ function TetriminoI.new ()
     instance.blocks[i] = Block.new("light_blue", instance)
   end
   
-  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate -1, 0);
-  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate, 0);
-  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate +1, 0);
-  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate +2, 0);
+  instance.blocks[0]:setPosition(tetriminoSpawnXCoordinate -1, 0)
+  instance.blocks[1]:setPosition(tetriminoSpawnXCoordinate, 0)
+  instance.blocks[2]:setPosition(tetriminoSpawnXCoordinate +1, 0)
+  instance.blocks[3]:setPosition(tetriminoSpawnXCoordinate +2, 0)
   
   instance.rotations = {
         {{0, 0},{1,-1},{2,-2},{3,-3}},

@@ -52,7 +52,7 @@ function tryInsertTetriminoIntoGrid(tetrimino)
   
   for i = 0, #tetrimino.blocks do
     local block = tetrimino.blocks[i]
-    grid[block.y][block.x] = block;
+    grid[block.y][block.x] = block
   end  
   
   return true
@@ -73,7 +73,7 @@ function destroyRow(n)
         if grid[i][j] ~= nil then
           grid[i][j]:move("down")
         end
-        grid[i-1][j] = nil;
+        grid[i-1][j] = nil
       end
     end
   end
@@ -87,11 +87,11 @@ function destroyFilledRows()
         for j = 0, gridColumns - 1 do
           if grid[i][j] == nil then
             isRowFilled = false
-            break;
+            break
           end
         end
         if isRowFilled then
-          destroyRow(i);
+          destroyRow(i)
           rowsToDestroy = rowsToDestroy + 1
         end
     end
@@ -100,9 +100,9 @@ end
 
 function areCoordinatesUnoccupied(x,y) 
   if x<0 or x >= gridColumns or y<0 or y>=gridRows then
-      return false;
+      return false
   end
-  return grid[y][x] == nil;
+  return grid[y][x] == nil
 end
 
 function onDrawPlayArea()
