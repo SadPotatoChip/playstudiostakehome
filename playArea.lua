@@ -29,13 +29,15 @@ function canBlockMoveInDirection(block, direction)
   return true
 end
 
+
+--returns number of rows destroyed when the tetrimino landed or -1 if we lost the game
 function onTetriminoLanded(tetrimino)
   
   if false == tryInsertTetriminoIntoGrid(tetrimino) then
-    initializePlayArea()
+    return -1
   end
-  
-  destroyFilledRows()
+    
+  return destroyFilledRows()
   
 end
 
@@ -79,18 +81,21 @@ end
 
 
 function destroyFilledRows()
-   for i = 0, gridRows - 1 do
-        local isRowFilled = true;
+    local rowsToDestroy = 0
+    for i = 0, gridRows - 1 do
+        local isRowFilled = true
         for j = 0, gridColumns - 1 do
           if grid[i][j] == nil then
-            isRowFilled = false;
+            isRowFilled = false
             break;
           end
         end
         if isRowFilled then
           destroyRow(i);
+          rowsToDestroy = rowsToDestroy + 1
         end
     end
+    return rowsToDestroy
 end
 
 function areCoordinatesUnoccupied(x,y) 
