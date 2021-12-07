@@ -8,17 +8,17 @@ local time = 0
 
 function love.load()
   loadSprites()
-  currentTetrimino = TetriminoO.new()
+  currentTetrimino = Tetrimino.getRandomTetrimino()
   initializePlayArea()
 end
 
 function love.update(dt)
   time = time + dt
-  if time >= 0.1 then
+  if time >= 0.3 then
     time = 0
     if false == currentTetrimino:tryMove("down") then
       onTetriminoLanded(currentTetrimino)
-      currentTetrimino = TetriminoL.new()
+      currentTetrimino = Tetrimino.getRandomTetrimino()
     end    
   end  
 end
