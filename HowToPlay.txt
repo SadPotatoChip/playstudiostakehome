@@ -1,0 +1,7 @@
+Open the game.love file with the LOVE engine v11.3
+
+Controlls:
+Left => A, Left Arrow
+Right => D, Right Arrow
+Drop => S, Down Arrow
+Rotate => Space
